@@ -87,11 +87,17 @@ $('sucursal').innerHTML = sucursales.map(s => `<option>${s.nombre}</option>`).jo
 const ahora = new Date(Date.now() - new Date().getTimezoneOffset() * 60000);
 $('fecha').min = ahora.toISOString().slice(0, 16);
 
-/* CONEXIÓN CON HOJAS DE CÁLCULO: esta función recibe el pedido ya ordenado
-   (nombre, telefono, sucursal, fecha, productos, total). Complétala con tu envío.
-   Si el envío falla, lanza un error (throw) y se mostrará un aviso al cliente. */
+/* CONEXIÓN CON HOJAS DE CÁLCULO
+   Pega aquí la URL de tu implementación de Apps Script (termina en /exec). */
+const URL_PEDIDOS = 'https://script.google.com/macros/s/AKfycbzYyP-WejwMh4mfHKYgnqjuSnvuEfernQEJdlZSLxDIlJN80RipdSSeU6K_PMXdFP-4/exec';
+
 async function enviarPedido(datos){
-  console.log('Pedido listo para enviar:', datos);
+  if(!URL_PEDIDOS) throw new Error('Falta configurar URL_PEDIDOS en js/index.js');
+  // Sin cabeceras personalizadas: así el navegador no bloquea la petición (CORS)
+  const res = await fetch(URL_PEDIDOS, { method: 'POST', body: JSON.stringify(datos) });
+  const r = await res.json();
+  if(!r.ok) throw new Error(r.error || 'No se pudo guardar el pedido');
+  return r.id;   // número de pedido, por ejemplo "P-0001"
 }
 
 $('form').addEventListener('submit', async e => {
@@ -107,11 +113,12 @@ $('form').addEventListener('submit', async e => {
   };
   datos.nombre = datos.nombre.trim();
   btn.disabled = true;
-  try { await enviarPedido(datos); }
+  let id;
+  try { id = await enviarPedido(datos); }
   catch { m.className = 'mensaje error'; m.textContent = 'No pudimos enviar tu pedido. Inténtalo de nuevo.'; return; }
   finally { btn.disabled = false; }
   m.className = 'mensaje';
-  m.textContent = `¡Gracias, ${datos.nombre}! Tu pedido estará listo en ${datos.sucursal}.`;
+  m.textContent = `¡Gracias, ${datos.nombre}! Tu pedido estará listo en ${datos.sucursal}.${id ? ` Número de pedido: ${id}.` : ''}`;
   Object.keys(pedido).forEach(k => { delete pedido[k]; $('q' + k).textContent = 0; });
   actualizarResumen(); form.reset();
 });
@@ -131,3 +138,5 @@ $('sedes').addEventListener('click', e => {
 pintarVitrina();
 pintarLista();
 actualizarResumen();
+
+
