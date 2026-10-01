@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Delicia: panadería y pastelería artesanal. Mira nuestros panes y postres, haz tu pedido y encuentra tu sucursal.">
+<meta name="theme-color" content="#FBF5E9">
+<link rel="icon" href="imagenes/logo.jpeg">
+<title>Delicia · Panadería y pastelería</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+
+<header>
+  <div class="barra">
+    <div class="marca">
+      <img src="imagenes/logo.jpeg" alt="Logo de Delicia" width="56" height="56">
+      <span>Delicia</span>
+    </div>
+    <nav aria-label="Secciones">
+      <button aria-current="page" data-ir="productos">Productos</button>
+      <button data-ir="pedidos">Pedidos<span class="contador" id="contador">0</span></button>
+      <button data-ir="sucursales">Sucursales</button>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- ========== PRODUCTOS ========== -->
+  <section id="productos" class="activa">
+    <div class="portada">
+      <div>
+        <h1>Pan recién horneado, dulces de todos los días</h1>
+        <p class="intro">Hornadas frescas desde la madrugada: croissants de mantequilla, panes de masa madre y postres hechos a mano para compartir.</p>
+      </div>
+      <div class="vitrina" aria-hidden="true"><span>🥐</span><span>🍞</span><span>🧁</span></div>
+    </div>
+
+    <h2>Nuestra vitrina</h2>
+    <div class="filtros" role="group" aria-label="Filtrar productos">
+      <button aria-pressed="true" data-cat="todos">Todos</button>
+      <button aria-pressed="false" data-cat="pan">Panes</button>
+      <button aria-pressed="false" data-cat="postre">Postres</button>
+    </div>
+    <div class="rejilla" id="rejilla"></div>
+  </section>
+
+  <!-- ========== PEDIDOS ========== -->
+  <section id="pedidos">
+    <h2>Haz tu pedido</h2>
+    <p class="intro">Elige tus favoritos, indica cuántos quieres y retíralos en la sucursal que prefieras.</p>
+    <div class="pedido">
+      <div class="lista" id="lista"></div>
+      <aside class="resumen">
+        <h3>Tu pedido</h3>
+        <ul class="lineas" id="lineas"></ul>
+        <div class="total"><span>Total</span><span id="total">$0.00</span></div>
+        <form id="form">
+          <label>Nombre
+            <input type="text" id="nombre" name="nombre" autocomplete="name" required>
+          </label>
+          <label>Teléfono
+            <input type="tel" id="telefono" name="telefono" inputmode="tel" autocomplete="tel" required>
+          </label>
+          <label>Sucursal de retiro
+            <select id="sucursal" name="sucursal"></select>
+          </label>
+          <label>Fecha y hora de retiro
+            <input type="datetime-local" id="fecha" name="fecha" required>
+          </label>
+          <button class="btn" type="submit">Enviar pedido</button>
+        </form>
+        <div class="mensaje" id="mensaje" role="status" hidden></div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ========== SUCURSALES ========== -->
+  <section id="sucursales">
+    <h2>Encuentra tu Delicia más cercana</h2>
+    <p class="intro">Elige una sucursal para ver su dirección y horario.</p>
+    <div class="sucursales">
+      <div class="sedes" id="sedes"></div>
+      <!-- Espacio del mapa: vacío por ahora. Aquí se conectará la API del mapa. -->
+      <div id="mapa"></div>
+    </div>
+  </section>
+</main>
+
+<footer>Delicia · Hecho con cariño y mantequilla · © 2026</footer>
+
+<script src="js/index.js" defer></script>
+</body>
+</html>
