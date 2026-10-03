@@ -92,7 +92,8 @@ input,select{display:block;width:100%;margin-top:4px;padding:10px 14px;border:1p
 .sede strong{display:block;font-family:var(--titulos);font-size:1.15rem;font-weight:600}
 .sede span{display:block;font-size:.93rem;color:var(--cacao-suave)}
 /* ====== CONTENEDOR DEL MAPA: aquí se conecta la API ====== */
-#mapa{min-height:440px;border-radius:26px;background:var(--lila);overflow:hidden}
+#mapa{height:440px;border-radius:26px;background:var(--lila);overflow:hidden}
+#mapa iframe{display:block;width:100%;height:100%;border:0}
 
 footer{text-align:center;padding:26px 20px;background:var(--rosa);font-size:.95rem}
 
@@ -100,7 +101,7 @@ footer{text-align:center;padding:26px 20px;background:var(--rosa);font-size:.95r
   .portada,.pedido,.sucursales{grid-template-columns:1fr}
   .resumen{position:static}
   .barra{justify-content:center}
-  #mapa{min-height:320px}
+  #mapa{height:320px}
 }
 @media(max-width:420px){nav button{padding:8px 13px;font-size:.95rem}.marca{font-size:1.3rem}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
