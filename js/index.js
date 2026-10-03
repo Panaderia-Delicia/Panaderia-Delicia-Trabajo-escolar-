@@ -3,15 +3,15 @@
 /* img: ruta de la foto (ej. 'imagenes/croissant.jpg'). Si queda vacío se muestra el emoji.
    desc: descripción que aparece bajo cada cuadro. */
 const productos = [
-  {id:1, nombre:'Croissant de mantequilla', cat:'pan',    precio:1.50, emoji:'🥐', color:'--mantequilla', desc:'Descripción de producto', img:''},
-  {id:2, nombre:'Pan de masa madre',        cat:'pan',    precio:4.25, emoji:'🍞', color:'--durazno',     desc:'Descripción de producto', img:''},
-  {id:3, nombre:'Baguette artesanal',       cat:'pan',    precio:2.00, emoji:'🥖', color:'--mantequilla', desc:'Descripción de producto', img:''},
-  {id:4, nombre:'Rollo de canela',          cat:'pan',    precio:2.25, emoji:'🌀', color:'--rosa',        desc:'Descripción de producto', img:''},
-  {id:5, nombre:'Pastel de fresas',         cat:'postre', precio:3.75, emoji:'🍰', color:'--rosa',        desc:'Descripción de producto', img:''},
-  {id:6, nombre:'Cupcake de vainilla',      cat:'postre', precio:1.75, emoji:'🧁', color:'--lila',        desc:'Descripción de producto', img:''},
-  {id:7, nombre:'Dona glaseada',            cat:'postre', precio:1.25, emoji:'🍩', color:'--menta',       desc:'Descripción de producto', img:''},
-  {id:8, nombre:'Galletas de chispas',      cat:'postre', precio:0.90, emoji:'🍪', color:'--durazno',     desc:'Descripción de producto', img:''}
-];
+     {id:1, nombre:'Croissant de mantequilla', cat:'pan',    precio:1.50, emoji:'🥐', color:'--mantequilla', img:'imagenes/cruasan.jpg',       pos:'center',     desc:'Hojaldre dorado y crujiente por fuera, suave y mantecoso por dentro.'},
+     {id:2, nombre:'Pan de masa madre',        cat:'pan',    precio:4.25, emoji:'🍞', color:'--durazno',     img:'imagenes/panMasaMadre.jpg',  pos:'40% center', desc:'Corteza crujiente y miga suave y aireada, ideal con un poco de mantequilla.'},
+     {id:3, nombre:'Baguette artesanal',       cat:'pan',    precio:2.00, emoji:'🥖', color:'--mantequilla', img:'imagenes/baguet.jpg',        pos:'90% center', desc:'Corteza fina y crocante con miga ligera, perfecta para sándwiches.'},
+     {id:4, nombre:'Rollo de canela',          cat:'pan',    precio:2.25, emoji:'🌀', color:'--rosa',        img:'imagenes/canelaRol.jpg',     pos:'center',     desc:'Masa suave en espiral con canela, cubierta de glaseado cremoso de vainilla.'},
+     {id:5, nombre:'Pastel de fresas',         cat:'postre', precio:3.75, emoji:'🍰', color:'--rosa',        img:'imagenes/pastelFresa.jpg',   pos:'40% center', desc:'Bizcocho esponjoso con crema ligera y fresas frescas.'},
+     {id:6, nombre:'Cupcake de vainilla',      cat:'postre', precio:1.75, emoji:'🧁', color:'--lila',        img:'imagenes/cupkakeVanilla.jpg',pos:'55% center', desc:'Bizcocho tierno de vainilla con betún cremoso y confeti de colores.'},
+     {id:7, nombre:'Dona glaseada',            cat:'postre', precio:1.25, emoji:'🍩', color:'--menta',       img:'imagenes/Dona.jpg',          pos:'center',     desc:'Suave y esponjosa, bañada en un dulce glaseado brillante.'},
+     {id:8, nombre:'Galletas de chispas',      cat:'postre', precio:0.90, emoji:'🍪', color:'--durazno',     img:'imagenes/galleta.jpg',       pos:'40% center', desc:'Crujientes por fuera, suaves por dentro y llenas de chocolate.'}
+ ];
 const sucursales = [
   {nombre:'Delicia Altavista',   dir:'Unicentro Altavista, Autopista de Oro',     horario:'Lun a Sáb 9:00 a 20:00', lat:13.6989, lng:-89.1914},
   {nombre:'Delicia San Martin',  dir:'El Encuentro San Martin',       horario:'Lun a Dom 8:00 a 21:00', lat:13.7006, lng:-89.2383},
@@ -21,7 +21,7 @@ const sucursales = [
 /* ================= UTILIDADES ================= */
 const $ = id => document.getElementById(id);
 const dinero = n => '$' + n.toFixed(2);
-const visual = p => p.img ? `<img src="${p.img}" alt="${p.nombre}" loading="lazy" decoding="async">` : p.emoji;
+const visual = p => p.img ? `<img src="${p.img}" alt="${p.nombre}" style="object-position:${p.pos || 'center'}" loading="lazy" decoding="async">` : p.emoji;
 const pedido = {};   // { idProducto: cantidad }
 
 /* ================= NAVEGACIÓN ENTRE APARTADOS ================= */
