@@ -13,9 +13,9 @@ const productos = [
   {id:8, nombre:'Galletas de chispas',      cat:'postre', precio:0.90, emoji:'🍪', color:'--durazno',     desc:'Descripción de producto', img:''}
 ];
 const sucursales = [
-  {nombre:'Delicia Centro',   dir:'Calle Principal #123, Centro',     horario:'Lun a Sáb 6:00 a 20:00', lat:13.6989, lng:-89.1914},
-  {nombre:'Delicia Escalón',  dir:'Paseo General Escalón #456',       horario:'Lun a Dom 7:00 a 21:00', lat:13.7006, lng:-89.2383},
-  {nombre:'Delicia Santa Tecla', dir:'Avenida Las Palmas #789',       horario:'Lun a Sáb 6:30 a 19:30', lat:13.6769, lng:-89.2797}
+  {nombre:'Delicia Altavista',   dir:'Unicentro Altavista, Autopista de Oro',     horario:'Lun a Sáb 9:00 a 20:00', lat:13.6989, lng:-89.1914},
+  {nombre:'Delicia San Martin',  dir:'El Encuentro San Martin',       horario:'Lun a Dom 8:00 a 21:00', lat:13.7006, lng:-89.2383},
+  {nombre:'Delicia Apopa', dir:'El Encuentro Valle Dulce',       horario:'Lun a Sáb 7:30 a 19:30', lat:13.6769, lng:-89.2797}
 ];
 
 /* ================= UTILIDADES ================= */
