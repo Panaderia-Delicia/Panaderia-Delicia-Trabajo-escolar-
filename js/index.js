@@ -87,29 +87,15 @@ $('sucursal').innerHTML = sucursales.map(s => `<option>${s.nombre}</option>`).jo
 const ahora = new Date(Date.now() - new Date().getTimezoneOffset() * 60000);
 $('fecha').min = ahora.toISOString().slice(0, 16);
 
-/* CONEXIÓN CON SUPABASE (base de datos real)
-   Estos dos datos son PÚBLICOS por diseño: la seguridad la dan las reglas (RLS) de la base de datos.
-   NUNCA pongas aquí la "secret key" ni la "service_role key". */
-const SUPABASE_URL = 'https://sjftyekefbahqyibbhiy.supabase.co';
-const SUPABASE_KEY = 'sb_publishable_qQsLGG7L4NDyDIQwaCizig_8lMdiwIk';
+/* CONEXIÓN CON HOJAS DE CÁLCULO */
+const URL_PEDIDOS = 'https://script.google.com/macros/s/AKfycbzYyP-WejwMh4mfHKYgnqjuSnvuEfernQEJdlZSLxDIlJN80RipdSSeU6K_PMXdFP-4/exec';
 
 async function enviarPedido(datos){
-  // Cada producto se manda como {producto_id, cantidad}; el total lo calcula la base de datos con los precios reales
-  const items = productos.filter(p => pedido[p.id]).map(p => ({ producto_id: p.id, cantidad: pedido[p.id] }));
-  const res = await fetch(`${SUPABASE_URL}/rest/v1/rpc/crear_pedido`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json', 'apikey': SUPABASE_KEY },
-    body: JSON.stringify({
-      p_nombre:   datos.nombre,
-      p_telefono: datos.telefono,
-      p_sucursal: datos.sucursal,
-      p_fecha:    new Date(datos.fecha).toISOString(),   // convierte la fecha local a formato universal
-      p_items:    items
-    })
-  });
+  // Sin cabeceras personalizadas: así el navegador no bloquea la petición (CORS)
+  const res = await fetch(URL_PEDIDOS, { method: 'POST', body: JSON.stringify(datos) });
   const r = await res.json();
-  if(!res.ok) throw new Error(r.message || 'No se pudo guardar el pedido');
-  return r;   // número de pedido, por ejemplo "P-0001"
+  if(!r.ok) throw new Error(r.error || 'No se pudo guardar el pedido');
+  return r.id;   // número de pedido, por ejemplo "P-0001"
 }
 
 $('form').addEventListener('submit', async e => {
