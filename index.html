@@ -96,6 +96,52 @@
   </section>
 </main>
 
+<!-- ========== NUEVA SECCIÓN: INFORMACIÓN DE CONTACTO (arriba del footer) ========== -->
+<div class="pie-info">
+  <div class="pie-info__grid">
+
+    <!-- Columna 1: marca y descripción -->
+    <div>
+      <div class="pie-info__marca">
+        <img src="imagenes/logo.jpeg" alt="Logo de Delicia" width="44" height="44">
+        <span>Delicia</span>
+      </div>
+      <p>Panadería y pastelería artesanal. Haz tu pedido y retíralo en la sucursal que prefieras.</p>
+    </div>
+
+    <!-- Columna 2: sucursales (se llena sola desde js/index.js) -->
+    <div>
+      <h4>Nuestras sucursales</h4>
+      <ul class="pie-info__lista" id="pie-sedes"></ul>
+    </div>
+
+    <!-- Columna 3: correo electrónico -->
+    <div>
+      <h4>Contacto</h4>
+      <ul class="pie-info__lista">
+        <li class="pie-info__fila">
+          <!-- Icono de sobre -->
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+          <!-- ✏️ CAMBIA "tucorreo@ejemplo.com" por tu correo (en el href y en el texto) -->
+          <a href="mailto:tucorreo@ejemplo.com">tucorreo@ejemplo.com</a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Columna 4: redes sociales -->
+    <div>
+      <h4>Redes sociales</h4>
+      <div class="pie-info__redes">
+        <!-- ✏️ REEMPLAZA href="#" por el enlace de tu cuenta de Instagram -->
+        <a href="#" target="_blank" rel="noopener" aria-label="Instagram de Delicia" title="Instagram">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</div>
+  
 <footer>Delicia · Hecho con cariño y mantequilla · © 2026</footer>
 
 <script src="js/index.js" defer></script>
