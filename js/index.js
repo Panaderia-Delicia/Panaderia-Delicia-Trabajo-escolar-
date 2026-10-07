@@ -1,5 +1,5 @@
 'use strict';
-/* ================= DATOS (edita precios, nombres y sucursales) ================= */
+/* ================= DATOS ================= */
 /* img: ruta de la foto (ej. 'imagenes/croissant.jpg'). Si queda vacío se muestra el emoji.
    desc: descripción que aparece bajo cada cuadro. */
 const productos = [
@@ -38,7 +38,7 @@ tabs.forEach(t => t.addEventListener('click', () => { location.hash = t.dataset.
 window.addEventListener('hashchange', () => ir(location.hash.slice(1)));   // funciona con el botón "atrás"
 ir(location.hash.slice(1));
 
-/* ================= PRODUCTOS (vitrina) ================= */
+/* ================= PRODUCTOS (catalogo) ================= */
 function pintarVitrina(cat = 'todos'){
   $('rejilla').innerHTML = productos.filter(p => cat === 'todos' || p.cat === cat).map(p => `
     <article class="producto">
