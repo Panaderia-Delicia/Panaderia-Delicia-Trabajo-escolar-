@@ -95,6 +95,22 @@ input,select{display:block;width:100%;margin-top:4px;padding:10px 14px;border:1p
 #mapa{height:440px;border-radius:26px;background:var(--lila);overflow:hidden}
 #mapa iframe{display:block;width:100%;height:100%;border:0}
 
+/* ---------- Nueva sección de contacto (arriba del footer) ---------- */
+.pie-info{background:var(--cacao);color:var(--crema)}
+.pie-info__grid{max-width:1100px;margin:auto;padding:40px 20px;display:grid;grid-template-columns:1.2fr 1.5fr 1fr 1fr;gap:32px}
+.pie-info h4{font-family:var(--titulos);font-size:1.05rem;font-weight:600;margin-bottom:12px}
+.pie-info p,.pie-info li,.pie-info a{font-size:.92rem;color:#E9D9C4;line-height:1.5}
+.pie-info a{text-decoration:none;transition:color .2s}
+.pie-info a:hover{color:var(--mantequilla);text-decoration:underline}
+.pie-info__marca{display:flex;align-items:center;gap:12px;margin-bottom:12px;font-family:var(--titulos);font-size:1.3rem;font-weight:600}
+.pie-info__marca img{width:44px;height:44px;border-radius:50%;object-fit:cover}
+.pie-info__lista{list-style:none;padding:0;display:flex;flex-direction:column;gap:12px}
+.pie-info__lista strong{display:block;color:var(--crema)}   /* nombre de la sucursal */
+.pie-info__fila{display:flex;align-items:center;gap:10px}   /* icono + texto */
+.pie-info__redes{display:flex;gap:12px}
+.pie-info__redes a{width:40px;height:40px;display:grid;place-items:center;border:1px solid rgba(251,245,233,.3);border-radius:12px;transition:background .2s,color .2s}
+.pie-info__redes a:hover{background:var(--crema);color:var(--cacao);text-decoration:none}
+
 footer{text-align:center;padding:26px 20px;background:var(--rosa);font-size:.95rem}
 
 @media(max-width:820px){
@@ -102,6 +118,9 @@ footer{text-align:center;padding:26px 20px;background:var(--rosa);font-size:.95r
   .resumen{position:static}
   .barra{justify-content:center}
   #mapa{height:320px}
+  .pie-info__grid{grid-template-columns:1fr 1fr} 
 }
-@media(max-width:420px){nav button{padding:8px 13px;font-size:.95rem}.marca{font-size:1.3rem}}
+@media(max-width:420px){nav button{padding:8px 13px;font-size:.95rem}.marca{font-size:1.3rem}
+                       .pie-info__grid{grid-template-columns:1fr}
+}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
