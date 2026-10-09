@@ -170,4 +170,76 @@ menuManuales.addEventListener('click', e => { if(e.target.closest('a')) cerrarMe
 document.addEventListener('click', e => { if(!e.target.closest('.menu-manuales')) cerrarMenu(); });
 document.addEventListener('keydown', e => { if(e.key === 'Escape' && !menuManuales.hidden){ cerrarMenu(); burger.focus(); } });
 
+/* ================= DESARROLLO WEB ================= */
+(() => {
+  if(!$('desarrollo')) return;   // dentro de la vista previa esta sección no existe
+  const btnDev = document.querySelector('.btn-dev'), visor = $('dev-visor'), pre = $('dev-pre');
+  const rutas = { html:'index.html', css:'css/index.css', js:'js/index.js' };
+  const notas = {
+    html:'Solo HTML: la estructura y el contenido de la página, sin estilos ni interactividad. Los productos no aparecen porque se crean con JavaScript.',
+    css:'HTML + CSS: ya con colores, tipografías, formas y distribución. Se ve solo la sección Productos, todavía sin productos ni botones que funcionen.',
+    js:'HTML + CSS + JS: la página completa. Los productos se generan, los botones navegan y el pedido funciona.'
+  };
+  const fuentes = {};
+  let modo = 'pagina', capa = 'html', archivo = 'html', listo = false, descarga = null;
 
+  function cargar(){   // descarga los 3 archivos de la propia página (una sola vez)
+    descarga = descarga || Promise.all(Object.entries(rutas).map(async ([k, ruta]) => {
+      const r = await fetch(ruta); if(!r.ok) throw new Error(ruta);
+      fuentes[k] = await r.text();
+    })).catch(e => { descarga = null; throw e; });
+    return descarga;
+  }
+  function armarPagina(c){   // construye la página con 1, 2 o 3 capas
+    const doc = new DOMParser().parseFromString(fuentes.html, 'text/html');
+    doc.getElementById('desarrollo')?.remove();
+    doc.querySelector('.btn-dev')?.remove();
+    doc.querySelectorAll('script').forEach(s => s.remove());
+    if(c === 'html'){
+      doc.querySelectorAll('link[rel="stylesheet"]').forEach(l => l.remove());
+      doc.querySelectorAll('[style]').forEach(el => el.removeAttribute('style'));
+    } else {
+      const st = doc.createElement('style'); st.textContent = fuentes.css;
+      doc.querySelector('link[href="css/index.css"]').replaceWith(st);
+    }
+    if(c === 'js'){ const sc = doc.createElement('script'); sc.textContent = fuentes.js; doc.body.append(sc); }
+    return '<!DOCTYPE html>' + doc.documentElement.outerHTML;
+  }
+  const esc = t => t.replace(/&/g, '&amp;').replace(/</g, '&lt;');
+
+  async function mostrar(){
+    $('dev-pagina').hidden = modo !== 'pagina';
+    $('dev-codigo').hidden = modo !== 'codigo';
+    try { await cargar(); }
+    catch {
+      $('dev-nota').textContent = $('dev-info').textContent = 'No se pudieron leer los archivos. Esta función necesita abrir la página desde internet (GitHub Pages) o con un servidor local como Live Server; no funciona abriendo index.html directamente.';
+      return;
+    }
+    if(modo === 'pagina'){
+      $('dev-nota').textContent = notas[capa];
+      visor.srcdoc = armarPagina(capa);
+    } else {
+      const lineas = fuentes[archivo].replace(/\s+$/, '').split(/\r?\n/);
+      $('dev-info').textContent = `${rutas[archivo]} · ${lineas.length} líneas`;
+      pre.innerHTML = lineas.map(l => `<span class="l">${esc(l)}</span>`).join('');
+      pre.scrollTop = 0;
+    }
+  }
+  $('desarrollo').addEventListener('click', e => {
+    const b = e.target.closest('button'); if(!b) return;
+    if(b.dataset.modo) modo = b.dataset.modo;
+    else if(b.dataset.capa) capa = b.dataset.capa;
+    else if(b.dataset.archivo) archivo = b.dataset.archivo;
+    else return;
+    b.parentElement.querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x === b));
+    mostrar();
+  });
+  btnDev.addEventListener('click', () => { location.hash = 'desarrollo'; });
+  function alEntrar(){
+    const activo = location.hash === '#desarrollo';
+    activo ? btnDev.setAttribute('aria-current', 'page') : btnDev.removeAttribute('aria-current');
+    if(activo && !listo){ listo = true; mostrar(); }
+  }
+  window.addEventListener('hashchange', alEntrar);
+  alEntrar();
+})();
