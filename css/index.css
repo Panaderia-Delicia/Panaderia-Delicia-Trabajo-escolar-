@@ -153,3 +153,8 @@ footer{text-align:center;padding:26px 20px;background:var(--rosa);font-size:.95r
 .dev-codigo{margin:0;max-height:72vh;overflow:auto;background:#3B2218;color:#F6EBDD;border-radius:20px;padding:18px 0;font:14px/1.65 Consolas,'Courier New',monospace;counter-reset:linea;tab-size:2}
 .dev-codigo .l{display:block;white-space:pre;padding-right:20px}
 .dev-codigo .l::before{counter-increment:linea;content:counter(linea);display:inline-block;width:3.4em;margin-right:16px;text-align:right;color:#A8978A;user-select:none}
+
+/* Botón D.Web junto al menú de navegación */
+.btn-dev{padding:9px 14px}
+@media(min-width:821px){nav{margin-left:auto}}
+@media(min-width:821px) and (max-width:1060px){nav button{padding:9px 14px}}
