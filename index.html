@@ -36,6 +36,10 @@
       <button type="button" id="btn-contacto">Información de contacto</button>
     </nav>
   </div>
+      <button type="button" class="btn-dev">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/><line x1="14" y1="4" x2="10" y2="20"/></svg>
+      Desarrollo Web
+    </button>
 </header>
 
 <main>
@@ -103,6 +107,36 @@
                 title="Mapa de las sucursales de Delicia" loading="lazy" allowfullscreen
                 referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
+  </section>
+    <!-- ========== DESARROLLO WEB ========== -->
+  <section id="desarrollo">
+    <h2>Desarrollo Web</h2>
+    <p class="intro">Aquí puedes ver cómo se construye esta página: primero la estructura (HTML), luego el diseño (CSS) y por último la interactividad (JavaScript).</p>
+
+    <div class="dev-modos" role="group" aria-label="Modo de visualización">
+      <button type="button" data-modo="pagina" aria-pressed="true">Ver la página</button>
+      <button type="button" data-modo="codigo" aria-pressed="false">Ver el código</button>
+    </div>
+
+    <div id="dev-pagina">
+      <div class="dev-sub" role="group" aria-label="Capas de la página">
+        <button type="button" data-capa="html" aria-pressed="true">1 · Solo HTML</button>
+        <button type="button" data-capa="css" aria-pressed="false">2 · HTML + CSS</button>
+        <button type="button" data-capa="js" aria-pressed="false">3 · HTML + CSS + JS</button>
+      </div>
+      <p class="dev-nota" id="dev-nota"></p>
+      <iframe id="dev-visor" title="Vista previa de la página"></iframe>
+    </div>
+
+    <div id="dev-codigo" hidden>
+      <div class="dev-sub" role="group" aria-label="Archivos de código">
+        <button type="button" data-archivo="html" aria-pressed="true">index.html</button>
+        <button type="button" data-archivo="css" aria-pressed="false">css/index.css</button>
+        <button type="button" data-archivo="js" aria-pressed="false">js/index.js</button>
+      </div>
+      <p class="dev-nota" id="dev-info"></p>
+      <pre class="dev-codigo" id="dev-pre" tabindex="0" aria-label="Código fuente"></pre>
+    </div>
   </section>
 </main>
 
