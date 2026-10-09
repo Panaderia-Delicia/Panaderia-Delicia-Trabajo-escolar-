@@ -25,7 +25,7 @@ const visual = p => p.img ? `<img src="${p.img}" alt="${p.nombre}" style="object
 const pedido = {};   // { idProducto: cantidad }
 
 /* ================= NAVEGACIÓN ENTRE APARTADOS ================= */
-const tabs = document.querySelectorAll('nav button');
+const tabs = document.querySelectorAll('nav button[data-ir]');
 const secciones = [...document.querySelectorAll('main section')];
 
 function ir(id){
@@ -37,6 +37,10 @@ function ir(id){
 tabs.forEach(t => t.addEventListener('click', () => { location.hash = t.dataset.ir; }));
 window.addEventListener('hashchange', () => ir(location.hash.slice(1)));   // funciona con el botón "atrás"
 ir(location.hash.slice(1));
+/* Botón "Información de contacto": baja hasta el pie de página */
+$('btn-contacto').addEventListener('click', () => {
+  $('contacto').scrollIntoView();
+});
 
 /* ================= PRODUCTOS (catalogo) ================= */
 function pintarVitrina(cat = 'todos'){
