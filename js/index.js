@@ -245,3 +245,9 @@ document.addEventListener('keydown', e => { if(e.key === 'Escape' && !menuManual
   window.addEventListener('hashchange', alEntrar);
   alEntrar();
 })();
+
+/* ================= MISIÓN Y VISIÓN ================= */
+const dlgMision = $('dialogo-mision');
+$('abrir-mision').addEventListener('click', () => { cerrarMenu(); dlgMision.showModal(); });
+$('cerrar-mision').addEventListener('click', () => dlgMision.close());
+dlgMision.addEventListener('click', e => { if(e.target === dlgMision) dlgMision.close(); });   // clic en el fondo
