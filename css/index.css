@@ -124,3 +124,16 @@ footer{text-align:center;padding:26px 20px;background:var(--rosa);font-size:.95r
                        .pie-info__grid{grid-template-columns:1fr}
 }
 @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+
+/* ---------- Menú de manuales (burguer) ---------- */
+.menu-manuales{position:relative}
+.burger{width:44px;height:44px;border:1px solid #EBDDC8;background:var(--blanco);border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:0;transition:background .2s}
+.burger:hover{background:var(--durazno)}
+.burger span{display:block;width:20px;height:2px;border-radius:2px;background:var(--cacao);transition:transform .25s,opacity .2s}
+.burger[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.burger[aria-expanded="true"] span:nth-child(2){opacity:0}
+.burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.menu-lista{position:absolute;top:calc(100% + 10px);left:0;min-width:220px;list-style:none;padding:8px;margin:0;background:var(--blanco);border:1px solid #EBDDC8;border-radius:18px;box-shadow:0 10px 30px rgba(107,47,26,.12);z-index:20}
+.menu-lista[hidden]{display:none}
+.menu-lista a{display:block;padding:10px 16px;border-radius:12px;color:var(--cacao);text-decoration:none;font-family:var(--texto);font-size:1rem;font-weight:600}
+.menu-lista a:hover,.menu-lista a:focus-visible{background:var(--durazno)}
