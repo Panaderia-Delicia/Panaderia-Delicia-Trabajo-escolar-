@@ -36,13 +36,13 @@ main{max-width:1100px;margin:auto;padding:0 20px 70px}
 section{display:none;padding-top:44px}
 section.activa{display:block}
 h1,h2,h3{font-family:var(--titulos);font-weight:600;line-height:1.15}
-h1{font-size:clamp(2.3rem,5.5vw,3.8rem);max-width:13ch}
+h1{font-size:clamp(1.85rem,4.4vw,3.05rem);max-width:13ch}
 h2{font-size:clamp(1.8rem,4vw,2.5rem)}
-.intro{max-width:52ch;color:var(--cacao-suave);margin-top:14px}
+.intro{max-width:52ch;color:var(--cacao-suave);margin-top:10px;font-size:.95rem}
 
 /* ---------- Productos ---------- */
-.portada{display:grid;grid-template-columns:1.1fr 1fr;gap:30px;align-items:center;margin-bottom:46px}
-.vitrina{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.portada{display:grid;grid-template-columns:1.1fr 1fr;gap:24px;align-items:center;margin-bottom:36px}
+.vitrina{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;width:80%;justify-self:end}
 .vitrina span{aspect-ratio:3/4;border-radius:999px 999px 18px 18px;display:grid;place-items:center;font-size:clamp(2.2rem,6vw,3.6rem);overflow:hidden}
 .vitrina img,.cuadro img,.mini img{width:100%;height:100%;object-fit:cover}
 .vitrina span:nth-child(1){background:var(--rosa)}
@@ -53,7 +53,7 @@ h2{font-size:clamp(1.8rem,4vw,2.5rem)}
 .filtros button[aria-pressed="true"]{background:var(--cacao);color:var(--crema);border-color:var(--cacao)}
 .rejilla{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:34px 22px}
 .producto{text-align:center}
-.cuadro{aspect-ratio:3/4;border-radius:999px 999px 18px 18px;display:grid;place-items:center;font-size:4.2rem;overflow:hidden}
+.cuadro{aspect-ratio:3/4;border-radius:999px 999px 18px 18px;display:grid;place-items:center;font-size:4.2rem;overflow:hidden;width:85%;margin-inline:auto}
 .producto h3{font-size:1.25rem;margin-top:14px}
 .producto p{font-size:.95rem;color:var(--cacao-suave);margin-top:2px}
 .btn{border:0;background:var(--cacao);color:var(--crema);padding:10px 20px;border-radius:999px;font-weight:700;transition:transform .15s,background .2s}
@@ -115,6 +115,7 @@ footer{text-align:center;padding:26px 20px;background:var(--rosa);font-size:.95r
 
 @media(max-width:820px){
   .portada,.pedido,.sucursales{grid-template-columns:1fr}
+    .vitrina{justify-self:center}
   .resumen{position:static}
   .barra{justify-content:center}
   #mapa{height:320px}
