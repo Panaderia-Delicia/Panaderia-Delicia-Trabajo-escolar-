@@ -149,4 +149,21 @@ pintarVitrina();
 pintarLista();
 actualizarResumen();
 
+/* ================= MENÚ DE MANUALES (hamburguesa) ================= */
+const burger = $('burger'), menuManuales = $('menu-manuales');
+function cerrarMenu(){
+  menuManuales.hidden = true;
+  burger.setAttribute('aria-expanded', 'false');
+  burger.setAttribute('aria-label', 'Abrir menú de manuales');
+}
+burger.addEventListener('click', () => {
+  const abrir = menuManuales.hidden;
+  menuManuales.hidden = !abrir;
+  burger.setAttribute('aria-expanded', abrir);
+  burger.setAttribute('aria-label', abrir ? 'Cerrar menú de manuales' : 'Abrir menú de manuales');
+});
+menuManuales.addEventListener('click', e => { if(e.target.closest('a')) cerrarMenu(); });
+document.addEventListener('click', e => { if(!e.target.closest('.menu-manuales')) cerrarMenu(); });
+document.addEventListener('keydown', e => { if(e.key === 'Escape' && !menuManuales.hidden){ cerrarMenu(); burger.focus(); } });
+
 
