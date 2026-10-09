@@ -234,10 +234,12 @@ document.addEventListener('keydown', e => { if(e.key === 'Escape' && !menuManual
     b.parentElement.querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x === b));
     mostrar();
   });
-  btnDev.addEventListener('click', () => { location.hash = 'desarrollo'; });
+    btnDev.addEventListener('click', () => { location.hash = location.hash === '#desarrollo' ? 'productos' : 'desarrollo'; });
   function alEntrar(){
     const activo = location.hash === '#desarrollo';
     activo ? btnDev.setAttribute('aria-current', 'page') : btnDev.removeAttribute('aria-current');
+            const texto = activo ? 'Salir de Desarrollo Web y volver a Productos' : 'Desarrollo Web';
+       btnDev.title = texto; btnDev.setAttribute('aria-label', texto);
     if(activo && !listo){ listo = true; mostrar(); }
   }
   window.addEventListener('hashchange', alEntrar);
